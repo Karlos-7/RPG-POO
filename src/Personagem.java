@@ -5,7 +5,7 @@ public abstract class Personagem {
     public static final int MANA_INICIAL = 50;
     public static final int CUSTO_ESPECIAL = 20;
     public static final int REGENERACAO_MANA = 10;
-    public static final int POCOES_INICIAS = 3;
+    public static final int POCOES_INICIAIS = 3;
     public static final int CURA_POCAO = 30;
     public static final int XP_POR_NIVEL = 100;
     public static final int BONUS_VIDA_NIVEL = 20;
@@ -39,7 +39,7 @@ public abstract class Personagem {
         this.defesa = defesa;
         this.nivel = 1;
         this.xp = 0;
-        this.pocoes = POCOES_INICIAS;
+        this.pocoes = POCOES_INICIAIS;
     }
 
 
@@ -74,16 +74,16 @@ public abstract class Personagem {
             return false;
         }
         if (vida >= vidaMaxima) {
-            System.out.println("Sua vida já está ceia!");
+            System.out.println("Sua vida já está cheia!");
             return false;
         }
         pocoes--;
         int curado = Math.min(CURA_POCAO, vidaMaxima - vida);
         vida += curado;
-        System.out.println("Você utilixou uma poção!");
-        System.out.println("+" + curado + "HP");
+        System.out.println("Você utilizou uma poção!");
+        System.out.println("+" + curado + " HP");
         System.out.println("Vida: " + vida + "/" + vidaMaxima);
-        return false;
+        return true;
     }
 
     public void regenerarMana() {
@@ -95,7 +95,7 @@ public abstract class Personagem {
             return false;
         }
         xp += quantidade;
-        System.out.println("+" + quantidade + "XP");
+        System.out.println("+" + quantidade + " XP");
         boolean subiu = false;
         while (xp >= XP_POR_NIVEL) {
             xp -= XP_POR_NIVEL;
@@ -114,15 +114,16 @@ public abstract class Personagem {
         System.out.println("      VOCÊ SUBIU DE NÍVEL!");
         System.out.println("================================");
         System.out.println("Nível: " + nivel);
-        System.out.println("Vida: +" + BONUS_ATAQUE_NIVEL);
+        System.out.println("Vida: +" + BONUS_VIDA_NIVEL);
+        System.out.println("Ataque: +" + BONUS_ATAQUE_NIVEL);
     }
 
-    public void axibirStatus() {
+    public void exibirStatus() {
         System.out.println("================================");
         System.out.println("    STATUS DO PERSONAGEM");
-        System.out.println("c");
+        System.out.println("================================");
         System.out.println("Nome:   " + nome);
-        System.out.println("Classse:   " + classe);
+        System.out.println("Classe:   " + classe);
         System.out.println("Nível:   " + nivel);
         System.out.println("XP:   " + xp + "/" + XP_POR_NIVEL);
         System.out.println("Vida:   " + vida + "/" + vidaMaxima);
@@ -134,11 +135,11 @@ public abstract class Personagem {
     }
 
     public String getNome()  { return nome; }
-    public String gerClasse()  { return classe; }
-    public  int getVida()   { return vida; }
+    public String getClasse()  { return classe; }
+    public int getVida()   { return vida; }
     public int getVidaMaxima()   { return vidaMaxima; }
     public int getMana()   { return mana; }
-    public int getManaMaxima()   { return manaMaxima; };
+    public int getManaMaxima()   { return manaMaxima; }
     public int getAtaque()   { return ataque; }
     public int getDefesa()   { return defesa; }
     public int getNivel()   { return nivel; }
